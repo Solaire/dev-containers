@@ -17,7 +17,7 @@ if [ $# -eq 1 ]; then
     fi
 
     # Run the container with directory mounted
-    docker run -it -p "${PORT}:${PORT}" -v "${MOUNT_DIR}:/workspace" ${FULL_IMAGE}
+    docker run -it -p "${PORT}:${PORT}" -v "${MOUNT_DIR}:/workspace" ${FULL_IMAGE} 
     echo "Container running with '${MOUNT_DIR}' mounted to '/workspace'."
 else
     # Run the container without mounting anything
