@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get the directory of this script.
-# We can assume that this script will ALWAYS be in the same dir as the Docekrfile,
+# We can assume that this script will ALWAYS be in the same dir as the Dockerfile,
 # but the script can be called from anywhere.
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
