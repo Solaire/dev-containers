@@ -25,12 +25,23 @@ Suited for static site development with the Jekyll SSG.
 - Jekyll
 
 ### Node.js
-General-purpose JavaScript development and web applications
+General-purpose JavaScript development and web applications.
 
 **Included:**
 - Node.js v22
 - npm
 
+### LaTeX
+A lightweight container for compiling LaTeX documents.
+
+**Included:**
+- `texlive-latex-extra`
+- `latexmk`
+
+#### Usage inside the container
+```sh
+latexmk -pdf main.tex
+```
 
 ## Building & Running
 
