@@ -1,4 +1,4 @@
-.PHONY: info php ruby node latex
+.PHONY: info php ruby node latex rust
 
 UID := $(shell id -u)
 GID := $(shell id -g)
@@ -22,17 +22,23 @@ NODE_PORT = 3000
 LATEX_NAME = latex-dev-container
 LATEX_VERSION = 1.0
 
-info: # Show available images: 
+# Rust container info
+RUST_NAME = rust-dev-container
+RUST_VERSION = 1.0
+RUST_PORT = 8000
+
+info: # Show available images
 	@echo "Available dev containers:"
 	@echo "- php: PHP 8.2, Laravel 12, Composer"
 	@echo "- ruby: Ruby 3.2, Jekyll"
 	@echo "- node: Node.js 22, npm"
 	@echo "- latex: texlive-latex-extra"
+	@echo "- rust: Rust 1.78, cargo"
 	@echo ""
-	@echo "To run a container"
+	@echo "To run a container:"
 	@echo "docker run -it -p <PORT>:<PORT> -v <MOUNT_DIR>:/workspace <IMAGE>"
 
-php: # Build php dev container
+php: # Build PHP dev container
 	docker build --build-arg USER_UID=$(UID) --build-arg USER_GID=$(GID) -t $(PHP_NAME):$(PHP_VERSION) -f ./php/Dockerfile ./php/
 
 ruby: # Build Ruby dev container
@@ -43,3 +49,6 @@ node: # Build Node.js dev container
 
 latex: # Build LaTeX dev container
 	docker build --build-arg USER_UID=$(UID) --build-arg USER_GID=$(GID) -t $(LATEX_NAME):$(LATEX_VERSION) -f ./latex/Dockerfile ./latex/
+
+rust: # Build Rust dev container
+	docker build --build-arg USER_UID=$(UID) --build-arg USER_GID=$(GID) -t $(RUST_NAME):$(RUST_VERSION) -f ./rust/Dockerfile ./rust/
