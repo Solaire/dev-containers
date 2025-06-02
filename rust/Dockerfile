@@ -1,0 +1,31 @@
+# Use the official Rust image as the base
+FROM rust:1.78
+
+# Set the working directory inside the container
+WORKDIR /workspace
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    bash \
+    vim \
+    sudo \
+    && apt-get clean
+
+# Expose a typical Rust web dev port (e.g. for actix-web or Rocket)
+EXPOSE 8000
+
+# Add a non-root user with the same UID and GID as the host user (pass via build args)
+ARG USERNAME=dev
+ARG USER_UID=1000
+ARG USER_GID=1000
+
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
+    && echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+USER $USERNAME
+WORKDIR /workspace
+
+# Default command to keep the container running
+CMD ["bash"]
