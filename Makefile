@@ -1,4 +1,4 @@
-.PHONY: info php ruby node
+.PHONY: info php ruby node latex
 
 UID := $(shell id -u)
 GID := $(shell id -g)
@@ -18,11 +18,16 @@ NODE_NAME = node-dev-container
 NODE_VERSION = 1.0
 NODE_PORT = 3000
 
+# LaTeX container info
+LATEX_NAME = latex-dev-container
+LATEX_VERSION = 1.0
+
 info: # Show available images: 
 	@echo "Available dev containers:"
 	@echo "- php: PHP 8.2, Laravel 12, Composer"
 	@echo "- ruby: Ruby 3.2, Jekyll"
 	@echo "- node: Node.js 22, npm"
+	@echo "- latex: texlive-latex-extra"
 	@echo ""
 	@echo "To run a container"
 	@echo "docker run -it -p <PORT>:<PORT> -v <MOUNT_DIR>:/workspace <IMAGE>"
@@ -35,3 +40,6 @@ ruby: # Build Ruby dev container
 
 node: # Build Node.js dev container
 	docker build --build-arg USER_UID=$(UID) --build-arg USER_GID=$(GID) -t $(NODE_NAME):$(NODE_VERSION) -f ./node/Dockerfile ./node/
+
+latex: # Build LaTeX dev container
+	docker build --build-arg USER_UID=$(UID) --build-arg USER_GID=$(GID) -t $(LATEX_NAME):$(LATEX_VERSION) -f ./latex/Dockerfile ./latex/
