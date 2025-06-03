@@ -31,6 +31,13 @@ General-purpose JavaScript development and web applications.
 - Node.js v22
 - npm
 
+### rust
+Ideal for systems programming, CLI tools, and web backends.
+
+**Included:**
+- rust
+- cargo
+
 ### LaTeX
 A lightweight container for compiling LaTeX documents.
 
