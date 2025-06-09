@@ -9,11 +9,18 @@ RUN apt-get update && apt-get install -y \
     bash \
     vim \
     sudo \
+    make \
+    texlive-latex-base \
+    texlive-latex-recommended \
     texlive-latex-extra \
     texlive-fonts-recommended \
-    texlive-latex-recommended \
-    texlive-latex-base \
+    texlive-science \
+    texlive-fonts-extra \
+    texlive-xetex \
+    texlive-luatex \
     latexmk \
+    fonts-dejavu-core \
+    fonts-dejavu-extra \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 

@@ -1,10 +1,10 @@
-# Docker Dev Containers
+# 🐋 Dev Containers - Docker containers for every occasion
 
-This repository provides Dockerfiles for various language-specific development environments. The goal is to offer **reproducible, disposable containers** that eliminate the need to install toolchains and dependencies directly on your system -- especially useful for temporary or isolated projects.
+`dev-containers` offers a collection Dockerfiles for various language-specific development environments. The goal is to offer **reproducible, disposable containers** that eliminate the need to install a billion toolchains and dependencies directly on your system. Especially useful for temporary or isolated projects like [Advent of Code](https://adventofcode.com/).
 
 ## Containers
 
-Each container is Linux-based and includes the following common tools:
+All containers are Linux-based and includes the following common tools:
 - `bash`
 - `git`
 - `vim`
@@ -12,7 +12,7 @@ Each container is Linux-based and includes the following common tools:
 ### PHP (Laravel)
 A container designed for developing PHP applications using the Laravel framework.
 
-**Included:**
+**Includes:**
 - PHP 8.2
 - Laravel 12
 - Composer
@@ -20,30 +20,36 @@ A container designed for developing PHP applications using the Laravel framework
 ### Ruby (Jekyll)
 Suited for static site development with the Jekyll SSG.
 
-**Included:**
+**Includes:**
 - Ruby 3.2
 - Jekyll
 
 ### Node.js
 General-purpose JavaScript development and web applications.
 
-**Included:**
+**Includes:**
 - Node.js v22
 - npm
 
 ### rust
 Ideal for systems programming, CLI tools, and web backends.
 
-**Included:**
+**Includes:**
 - rust
 - cargo
 
 ### LaTeX
 A lightweight container for compiling LaTeX documents.
 
-**Included:**
+**Includes:**
+- `make`
 - `texlive-latex-extra`
+- `texlive-latex-recommended`
+- `texlive-science`
 - `latexmk`
+- `xetex`
+- `luatex`
+- `texlive-fonts`
 
 #### Usage inside the container
 ```sh
