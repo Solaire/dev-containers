@@ -1,0 +1,36 @@
+# Use the official Ruby image as the base
+FROM ruby:3.2
+
+# Set the working directory inside the container
+WORKDIR /workspace
+
+# Copy shared scripts
+COPY ./scripts/ /tmp/scripts/
+
+# Install essential tools 
+RUN bash /tmp/scripts/install_tools.sh
+
+# Ruby base image has everything we need right now.
+RUN apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Jekyll and Bundler
+RUN gem install jekyll bundler
+
+# Expose port 4000 for Jekyll's development server
+EXPOSE 8000
+
+# Add a non-root user with the same UID and GID as the host user (pass via build args)
+ARG USERNAME=dev
+ARG USER_UID=1000
+ARG USER_GID=1000
+
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
+    && echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+# Switch to non-root user
+USER $USERNAME
+
+# Default command to keep the container running
+CMD ["bash"]

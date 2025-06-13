@@ -4,28 +4,36 @@
 
 ## Containers
 
-All containers are Linux-based and includes the following common tools:
-- `bash`
+All containers are Linux-based. Each container installs the following packages:
 - `git`
+- `bash`
 - `vim`
+- `sudo`
+- `make`
+- `curl`
+- `unzip`
+- `zip`
+
+The required packages are defined in the `scripts/install_tools.sh` script.
 
 ### PHP (Laravel)
-A container designed for developing PHP applications using the Laravel framework.
+A container for developing PHP applications using the Laravel framework.
 
 **Includes:**
 - PHP 8.2
 - Laravel 12
 - Composer
 
-### Ruby (Jekyll)
-Suited for static site development with the Jekyll SSG.
+### Ruby
+Suited for building: webapps using "Rails", static sites with "Jekyll", or general Ruby programming.
 
 **Includes:**
 - Ruby 3.2
 - Jekyll
+- Rails
 
 ### Node.js
-General-purpose JavaScript development and web applications.
+General-purpose environment for JavaScript and web applications.
 
 **Includes:**
 - Node.js v22
@@ -39,10 +47,9 @@ Ideal for systems programming, CLI tools, and web backends.
 - cargo
 
 ### LaTeX
-A lightweight container for compiling LaTeX documents.
+Provides most required tools and packages for compiling LaTeX documents.
 
 **Includes:**
-- `make`
 - `texlive-latex-extra`
 - `texlive-latex-recommended`
 - `texlive-science`
@@ -51,16 +58,11 @@ A lightweight container for compiling LaTeX documents.
 - `luatex`
 - `texlive-fonts`
 
-#### Usage inside the container
-```sh
-latexmk -pdf main.tex
-```
-
 ## Building & Running
 
-Use the included `Makefile` to build container images easily
+Use the included `Makefile` to build container images easily:
 ```sh
-make php # or ruby, node
+make php # or ruby, node, etc.
 ```
 
 If no make target is provided, it will show a list of available containers.
@@ -84,15 +86,9 @@ docker run -it -p 4000:4000 -v ~/projects/my-app:/workspace php-dev-container:1.
   - When building without specifying the UID and GID, the files created inside the container will be owned by root -- this will likely cause permission issues on the host (e.g. in VSCode or Git).
   - You can manually fix the permission issues by running `chown $USER [file]`.
 
-## Troubleshooting & Dev Tips
-
-> Coming soon: Examples like resetting file permissions, entering a stopped container, running without port mapping, and more.
-
 ## Future
 - **PHP Container**:
   - Add `node` and `npm` to support JS tooling (e.g. Laravel Mix, Vite).
-- **Ruby Container**:
-  - Add support for the `Rails` framework.
 - **New Containers**:
   - `go`
   - `C & C++`
