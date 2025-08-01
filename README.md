@@ -2,6 +2,13 @@
 
 `dev-containers` offers a collection Dockerfiles for various language-specific development environments. The goal is to offer **reproducible, disposable containers** that eliminate the need to install a billion toolchains and dependencies directly on your system. Especially useful for temporary or isolated projects like [Advent of Code](https://adventofcode.com/).
 
+## Prerequisites
+
+Install docker and docker compose. For Debian-based systems, you can use the following command:
+```sh
+sudo apt install docker.io docker-compose
+```
+
 ## Containers
 
 All containers are Linux-based. Each container installs the following packages:
@@ -58,7 +65,7 @@ Provides most required tools and packages for compiling LaTeX documents.
 - `luatex`
 - `texlive-fonts`
 
-## Building & Running
+### Building containers
 
 Use the included `Makefile` to build container images easily:
 ```sh
@@ -86,6 +93,38 @@ docker run -it -p 4000:4000 -v ~/projects/my-app:/workspace php-dev-container:1.
   - When building without specifying the UID and GID, the files created inside the container will be owned by root -- this will likely cause permission issues on the host (e.g. in VSCode or Git).
   - You can manually fix the permission issues by running `chown $USER [file]`.
 
+## Docker compose
+
+As of tag `2.0`, this repository also provides `docker-compose` configuration files. Docker compose files are designed to be used for creating multiple related containers (e.g. database + admin panel), and might require additional environment configuration (e.g. default username + password).
+
+As opposed to the docker containers above, compose recipes are designed to be less "general-purpose". This means that, at the moment, additional base software (like vim or git) is not added to the containers.
+
+### Postgres
+Defined in the `docker-compose-postgres.yaml`, this compose configuration will build images for 2 containers:
+- **postgres:16**: Object-relational database system.
+- **pgadmin:4.8**: Web-based database administration system.
+
+The environment configuration for those containers can be found in the `.env.example` file.
+
+### Building
+
+First step should be to make an `.env` file from the example provided:
+```sh
+cp docker-compose/.env.example docker-compose/.env
+```
+
+You can build the specified container with the following command:
+```sh
+docker compose -f {path/to/compose.yaml} up -d
+```
+
+This will run the containers and detach them.
+
+Alternatively use `make`:
+```sh
+make postgres
+```
+
 ## Future
 - **PHP Container**:
   - Add `node` and `npm` to support JS tooling (e.g. Laravel Mix, Vite).
@@ -97,5 +136,3 @@ docker run -it -p 4000:4000 -v ~/projects/my-app:/workspace php-dev-container:1.
   - `.devcontainer` configuration.
   - Recommended extensions.
   - Volume mounts for workspaces.
-
-  
