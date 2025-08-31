@@ -6,11 +6,11 @@ GID := $(shell id -g)
 # Image definitions
 IMAGES := php ruby node latex rust
 COMPOSE := postgres
-VERSION = 2.0
+VERSION = 2.1
 
 info: # Show available images
 	@echo "Available dev containers:"
-	@echo "- php: PHP 8.2, Laravel 12, Composer"
+	@echo "- php: PHP 8.2, Laravel 12, Composer, Node.js 20"
 	@echo "- ruby: Ruby 3.2, Rails, Jekyll"
 	@echo "- node: Node.js 22, npm"
 	@echo "- latex: texlive-latex-extra"
