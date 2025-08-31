@@ -24,12 +24,13 @@ All containers are Linux-based. Each container installs the following packages:
 The required packages are defined in the `scripts/install_tools.sh` script.
 
 ### PHP (Laravel)
-A container for developing PHP applications using the Laravel framework.
+A container for developing PHP applications using the Laravel framework. Also includes NodeJS to support inertiajs integration.
 
 **Includes:**
 - PHP 8.2
 - Laravel 12
 - Composer
+- Node.js v22
 
 ### Ruby
 Suited for building: webapps using "Rails", static sites with "Jekyll", or general Ruby programming.
@@ -126,8 +127,6 @@ make postgres
 ```
 
 ## Future
-- **PHP Container**:
-  - Add `node` and `npm` to support JS tooling (e.g. Laravel Mix, Vite).
 - **New Containers**:
   - `go`
   - `C & C++`
