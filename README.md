@@ -66,6 +66,16 @@ Provides most required tools and packages for compiling LaTeX documents.
 - `luatex`
 - `texlive-fonts`
 
+### OCaml
+Provides support for OCaml programming language with opam package manager
+
+**Includes:**
+- `dune`
+- `utop`
+- `ocaml-lsp`
+- `merlin`
+
+
 ### Building containers
 
 Use the included `Makefile` to build container images easily:
