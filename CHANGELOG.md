@@ -2,6 +2,8 @@
 > 
 > This changelog only lists feature additions. See the Git history for more granular changes.
 
+- 2.2
+    - Added Dockerfile for ocaml with opam.
 - 2.1
     - Added support for `node.js` in the php container.
 - 2.0

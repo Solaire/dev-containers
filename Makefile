@@ -4,9 +4,9 @@ UID := $(shell id -u)
 GID := $(shell id -g)
 
 # Image definitions
-IMAGES := php ruby node latex rust
+IMAGES := php ruby node latex rust ocaml
 COMPOSE := postgres
-VERSION = 2.1
+VERSION = 2.2
 
 info: # Show available images
 	@echo "Available dev containers:"
@@ -15,6 +15,7 @@ info: # Show available images
 	@echo "- node: Node.js 22, npm"
 	@echo "- latex: texlive-latex-extra"
 	@echo "- rust: Rust 1.78, cargo"
+	@echo "- ocaml: ocaml 5.4.0, opam, dune"
 	@echo ""
 	@echo "Available docker compose recipes:"
 	@echo "- postgres: postgres:16, pgadmin:4.8"
